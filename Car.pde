@@ -1,12 +1,20 @@
-void setup()
+class Car
 {
-  SensorDataProvider Data = new SensorDataProvider();
-  String fp = "car_status_BMW_323i.csv";
-  Data.filePath = fp;
-  Data.dataTable = Initalize(Data.dataTable, Data.filePath);
-  for( int i =0; i<=Data.dataTable.getRowCount(); i++)
+  TripComputer computer;
+  FuelTank tank;
+  FuelComputer fuel;
+  
+  Car()
   {
-    println(readY(Data.currentIndex,Data.dataTable));
-    Data.currentIndex = readNext(Data.currentIndex);
+    computer = new TripComputer();
+    tank = new FuelTank();
+    fuel = new FuelComputer();
+  }
+  
+  Car(TripComputer a, FuelTank b, FuelComputer c)
+  {
+    computer = a;
+    tank = b;
+    fuel = c;
   }
 }
