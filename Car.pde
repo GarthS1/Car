@@ -1,3 +1,4 @@
+// Car stores three different classes 
 class Car
 {
   TripComputer computer;
@@ -17,4 +18,16 @@ class Car
     tank = b;
     fuel = c;
   }
+  
+  //gives the data to each of the classes inside of car
+  void processInput(float RPM, float gearRatio, float fuelLevel, float x, float y)
+  {
+    computer.RPM = RPM;
+    computer.gearRatio = gearRatio;
+    tank.fuelLevel = fuelLevel;
+    fuel.distance = (computer.getCurrentSpeed()/3600);
+    fuel.fuelLevel = fuelLevel;
+    fuel.calculateFuelEconomy();
+    fuel.calculateRange();
+  }    
 }

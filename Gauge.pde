@@ -1,3 +1,4 @@
+//not finished
 // stores the max and min of a parameter as well as the current vaule and units
 class Gauge
 {
@@ -5,6 +6,7 @@ class Gauge
   float maximum;
   float currentVaule;
   String units;
+  
   
   Gauge()
   {
@@ -22,43 +24,30 @@ class Gauge
     units = d;
   }
 }
-void setinterface()
+
+void display(String fuelLevel, String RPM, String speed, String fuelEconomy)
 {
-  int textsize = 50;
-  int ypos2 = 800;
-
-  ellipse( 400, 400, 500, 500);
-  ellipse( 990, 400, 500, 500);
-  ellipse( 1600, 400, 500, 500);
+  PFont font1; 
+  font1 = loadFont("DialogInput.bolditalic-48.vlw");
   
-  textSize(textsize); 
-  fill (0); 
-  text("FUEL (LITER)", 350, ypos2); 
-
-  textSize(textsize); 
-  fill (0); 
-  text("RPM", 940, ypos2); 
-
-  textSize(textsize); 
-  fill (0); 
-  text("SPEED(KM/H)", 1550, ypos2);
-}
-
-void display(float fuelLevel, float RPM, float speed)
-{
-  int textsize = 50;
-  int ypos = 400;
-  int ypos2 = 800;
-    
-  textSize(textsize); 
-  fill (0); 
-  text(fuelLevel, 350, ypos); 
+  PImage dashboard;
+  dashboard = loadImage("dashboard-Recovered.jpg");
+  image(dashboard, 0,0);  
+  textFont(font1, 100);
   
-  textSize(textsize); 
-  fill (0); 
-  text(RPM, 940, ypos); 
+  textSize(50); 
+  fill(255, 211, 56);
+  text(fuelLevel, 1510, 600); 
   
-  textSize(textsize); 
-  fill (0); 
-  text(speed, 1550, ypos); 
+  textSize(50); 
+  fill(255, 211, 56);
+  text(RPM, 950, 200); 
+  
+  textSize(150); 
+  fill(255, 211, 56);
+  text(speed, 820, 600); 
+  
+  textSize(50);
+  fill(255, 211, 56);
+  text(fuelEconomy, 820, 1000);
 }

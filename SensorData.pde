@@ -5,7 +5,7 @@ class SensorDataProvider
 {
   String filePath;
   Table dataTable;
-  int currentIndex;
+  int currentIndex; //counter
   float radius; //always need raduis and is tied to table 
   
   SensorDataProvider ()
@@ -30,25 +30,15 @@ class SensorDataProvider
     if(filePath.equals("car_status_BMW_323i.csv")==true)
     {
       dataTable= loadTable("car_status_BMW_323i.csv","header");
+      radius = 0.23;
     }
     else if(filePath.equals("car_status_Truck_F150.csv")==true)
     {
       dataTable = loadTable("car_status_Truck_F150.csv","header");
+      radius = 0.254;
     }
   }
   
-  //simlar process for raduis 
-  void Initalize1()
-  {
-    if(filePath.equals("car_status_BMW_323i.csv")==true)
-    {
-      radius = 23;
-    }
-    else if(filePath.equals("car_status_Truck_F150.csv")==true)
-    {
-      radius = 25.4;
-    }
-  }
   // increases the current index by one if not over row count 
   void readNext()
   {
@@ -80,13 +70,13 @@ class SensorDataProvider
   }
   
   //reads the x postion of the current row 
-  float readX()
+  float readX() //latitude
   {
     return dataTable.getFloat(currentIndex, "X");
   }
   
   //reads the y postion of the current row 
-  float readY()
+  float readY() //longitude 
   {
     return dataTable.getFloat(currentIndex, "Y");
   }    

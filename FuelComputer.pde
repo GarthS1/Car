@@ -6,48 +6,81 @@ class FuelComputer
   float fuelEconomyHistory;
   float range;
   
+  float distance;
+  int counter;
+  int index;
+  float lastFuelLevel; 
+  float fuelLevel;
+  float [] fuel;
+  
   FuelComputer()
   {
     fuelEconomy = 0;
     fuelConsumption = 0;
     fuelEconomyHistory = 0;
     range = 0;
+    distance = 0;
+    counter = 0;
+    index = 0;
+    lastFuelLevel = 0;
+    fuelLevel = 0;
+    fuel = new float [60];
   }
   
-  FuelComputer(float a, float b, float c, float d)
+  FuelComputer(float a, float b, float c, float d, float e, int f, int i, float g, float h)
   {
     fuelEconomy = a;
     fuelConsumption = b;
     fuelEconomyHistory = c;
     range = d;
-  }
-
-  /*float calculateFuelEconomy(int n, Table t, float r)
-  {
-    float a = readFuelLevel(n-1, t) - readFuelLevel(n, t);
-    return getCurrentSpeed(n, t,r)/a;  
+    distance = e;
+    counter = f;
+    index = i;
+    lastFuelLevel = g;
+    fuelLevel = h;
   }
   
-  float calculateAverageFuelEconomy(int n, Table t, float r)
+ //caulates fuel econmoy based on distance and consumed fuel
+  void calculateFuelEconomy()
   {
-    float a = 0;
-    for(int i =0; i<=60; i++)
+    fuelEconomy = ((distance)/(lastFuelLevel-fuelLevel)); // uses fuel economy formula
+    lastFuelLevel = fuelLevel;
+
+    fuel [index] = fuelEconomy;
+    lastFuelLevel = fuelLevel;
+    if(index==59)
     {
-      if(n!=0)
-      {
-      a += calculateFuelEconomy(n-i,t,r);
-      }
-      else
-      {
-        return a/i;
-      }
+      counter = 0;
     }
-    return a/60;
-  }*/
+    else
+    {
+      index++;
+    }
+    if(counter!=61)
+    {
+      counter++;
+    }
+  }
+     
+  void calculateAverageFuelEconomy()
+  {
+   int i =0;
+   int j =0;
+    for (; i<=counter; i++) 
+   {
+     j += fuel[i];
+    }
+  fuelEconomyHistory = (j/i);
+  }
+  
+  void calculateRange()
+  {
+    range = (fuelEconomyHistory * fuelLevel);
+  }
+  
+  void calculateFuelConsumption()
+  {
+    fuelConsumption = (1/fuelEconomyHistory)*100;
+  }    
 }
   
-  
-  
-  
-  
-//float calculateRange(

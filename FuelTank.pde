@@ -16,7 +16,7 @@ class FuelTank
     fuelLevel = fL;
   }
   
-  float getCosnsumedFuel()
+  float getConsumedFuel()
   {
     return (tankCapacity - fuelLevel); // consumed fuel formula  
   }
