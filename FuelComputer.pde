@@ -12,6 +12,8 @@ class FuelComputer
   float lastFuelLevel; 
   float fuelLevel;
   float [] fuel;
+  float [] fuelConsumptionA;
+  float [] fuelEconomyHistoryA;
   
   FuelComputer()
   {
@@ -25,6 +27,9 @@ class FuelComputer
     lastFuelLevel = 0;
     fuelLevel = 0;
     fuel = new float [60];
+    fuelConsumptionA = new float [40]; 
+    fuelEconomyHistoryA = new float [40];
+
   }
   
   FuelComputer(float a, float b, float c, float d, float e, int f, int i, float g, float h)
@@ -80,6 +85,12 @@ class FuelComputer
         j += fuel[i];    
     }
     fuelEconomyHistory = (j/counter); //caculates average by diving total vaule by the counter
+    //fills array with past fuelEconomyHistory vaules and leaves a blank one
+    for (int i = 0; i < fuelEconomyHistoryA.length - 1; i++) 
+    {
+      fuelEconomyHistoryA[i] = fuelEconomyHistoryA[i+1];
+    }
+    fuelEconomyHistoryA[39] = fuelEconomyHistory;//fills with current fueleconomy history
   }
   
   //caulates the range using the range formula
@@ -92,6 +103,13 @@ class FuelComputer
   void calculateFuelConsumption()
   {
     fuelConsumption = (1/fuelEconomyHistory)*100;
+    //fills array with past fuelConsumption vaules and leaves a blank one
+    for (int i = 0; i < fuelConsumptionA.length - 1; i++) 
+    {
+       fuelConsumptionA[i] = fuelConsumptionA[i+1];
+    }
+    //fills last arrary slot with current fuel consumpation
+    fuelConsumptionA[39] = fuelConsumption; 
   }    
 }
   

@@ -1,15 +1,17 @@
 //defines class so that they are global variables and can be changed in the functions
 //also defines the min, max and the label 
 SensorDataProvider data = new SensorDataProvider();
-Car car = new Car ();
-Gauge fuelLevel= new Gauge();
-Gauge speed = new Gauge();
+Car car = new Car();
+Gauge fuelLevel= new Gauge(0, 100, 0, "fuelLevel");
+Gauge speed = new Gauge(0, 200, 0, "speed");
 Gauge RPM = new Gauge(0, 2500, 0, "RPM");
 Gauge range = new Gauge(0, 10000, 0, "Range");
 Gauge fuelConsumpation = new Gauge(0, 10000, 0, "fuelConsumpation");
 Gauge fuelEconomy = new Gauge(0, 30, 0, "fuelEconomy");
 Gauge odometer = new Gauge(0, 1000000000, 0, "odometer");
 
+//imports bar graph tool
+import org.gicentre.utils.stat.*;
 
 void setup()   
 {
@@ -62,6 +64,10 @@ void draw()
     //calls the display fucntion which displays the current vaules  
     display(nfc(fuelLevel.currentVaule,1), nfc(RPM.currentVaule,1), nfc(speed.currentVaule,1), nfc(fuelEconomy.currentVaule, 2),nfc(odometer.currentVaule,2),nfc(range.currentVaule,2),nfc(fuelConsumpation.currentVaule,2)); 
     
+    //calls fucntion to display graphs 
+    graph(car.fuel.fuelConsumptionA);
+    graph2(car.fuel.fuelEconomyHistoryA);
+   
     //calls the read next function which calls the next row of the table or if table has no more rows resets the program 
     data.readNext();
   }

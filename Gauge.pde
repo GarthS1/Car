@@ -37,34 +37,34 @@ void display(String fuelLevel, String RPM, String speed, String fuelEconomy, Str
   //loasds image from folder
   PImage dashboard;
   dashboard = loadImage("dashboard-Recovered.jpg");
-  image(dashboard, 0,0);  
+  image(dashboard, 0, -100);  
   textFont(font1, 100);
   
   textSize(70); 
   fill(255, 211, 56);
-  text(fuelLevel, 1530, 600); 
+  text(fuelLevel, 1530, 500); 
   
   textSize(50); 
   fill(255, 211, 56);
-  text(RPM, 900, 200); 
+  text(RPM, 900, 100); 
   
   textSize(150); 
   fill(255, 211, 56);
-  text(speed, 800, 650); 
+  text(speed, 800, 550); 
   
   textSize(25);
   fill(255, 211, 56);
-  text(fuelEconomy, 940, 1050);
+  text(fuelEconomy, 940, 950);
   
   textSize(25);
   fill(255, 211, 56);
-  text(totalDistance, 940, 973);
+  text(totalDistance, 940, 873);
   
   textSize(25);
   fill(255, 211, 56);
-  text(range, 940, 1010);
+  text(range, 940, 910);
   
   textSize(25);
   fill(255, 211, 56);
-  text(fuelConsumpation, 940, 935);  
+  text(fuelConsumpation, 940, 835);  
 }

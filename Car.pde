@@ -30,7 +30,7 @@ class Car
 
     //functions are called to update vaules
     computer.updateTotalDistance();
-    fuel.distance = (computer.getCurrentSpeed()/3600);
+    fuel.distance = (computer.getCurrentSpeed()/3600); // divide by 3600 to get kilometers travelled in past second 
     fuel.calculateFuelEconomy();
     fuel.calculateAverageFuelEconomy();
     fuel.calculateRange();
