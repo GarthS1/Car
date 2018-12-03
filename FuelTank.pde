@@ -16,8 +16,9 @@ class FuelTank
     fuelLevel = fL;
   }
   
+  // consumed fuel formula 
   float getConsumedFuel()
   {
-    return (tankCapacity - fuelLevel); // consumed fuel formula  
+    return (tankCapacity - fuelLevel); 
   }
 }

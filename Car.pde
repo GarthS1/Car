@@ -19,15 +19,21 @@ class Car
     fuel = c;
   }
   
-  //gives the data to each of the classes inside of car
-  void processInput(float RPM, float gearRatio, float fuelLevel, float x, float y)
+  //gives the data to each of the classes inside of car and calls the fucntions to caulate the vaules needed 
+  void processInput(float RPM, float gearRatio, float fuelLevel, float X, float Y)
   {
+    //vaules are assigned inside the classes  
     computer.RPM = RPM;
     computer.gearRatio = gearRatio;
-    tank.fuelLevel = fuelLevel;
-    fuel.distance = (computer.getCurrentSpeed()/3600);
     fuel.fuelLevel = fuelLevel;
+    tank.fuelLevel = fuelLevel;
+
+    //functions are called to update vaules
+    computer.updateTotalDistance();
+    fuel.distance = (computer.getCurrentSpeed()/3600);
     fuel.calculateFuelEconomy();
+    fuel.calculateAverageFuelEconomy();
     fuel.calculateRange();
+    fuel.calculateFuelConsumption();
   }    
 }

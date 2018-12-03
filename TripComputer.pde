@@ -5,7 +5,7 @@ class TripComputer
   float RPM;
   float gearRatio;
   float totalTravelledDistance;
-  float radius;
+  float radius; //need radius for most caculations 
   
   TripComputer ()
   {
@@ -29,10 +29,10 @@ class TripComputer
     return (speed*3.6); //returns speed converts to kilometer automatically.
   }
   
-  // a is the counter to update total distance and adds the speed requires radius
+  //adds speed to counter
   void updateTotalDistance ()
   {
-    totalTravelledDistance +=(getCurrentSpeed()/3600); //adds speed to counter   
+    totalTravelledDistance +=(getCurrentSpeed()/3600); 
   }
 }
     

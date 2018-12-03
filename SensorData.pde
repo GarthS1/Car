@@ -6,7 +6,8 @@ class SensorDataProvider
   String filePath;
   Table dataTable;
   int currentIndex; //counter
-  float radius; //always need raduis and is tied to table 
+  float radius; //always need radius and is tied to table 
+  float tank; //always need tank capicity and is tied to table 
   
   SensorDataProvider ()
   {
@@ -14,14 +15,16 @@ class SensorDataProvider
     dataTable = new Table ();
     currentIndex = 0;
     radius = 0;
+    tank =0;
   }
   
-  SensorDataProvider(String s, Table a, int i, float r)
+  SensorDataProvider(String s, Table a, int i, float r, float t)
   {
     filePath = s;
     dataTable = a; 
     currentIndex = i;
-    radius =r;
+    radius = r;
+    tank = t;
   }
   
   // based on user input loads the correct Table dataTablend returns it
@@ -31,24 +34,31 @@ class SensorDataProvider
     {
       dataTable= loadTable("car_status_BMW_323i.csv","header");
       radius = 0.23;
+      tank = 60; 
     }
     else if(filePath.equals("car_status_Truck_F150.csv")==true)
     {
       dataTable = loadTable("car_status_Truck_F150.csv","header");
       radius = 0.254;
+      tank =80;
     }
   }
   
   // increases the current index by one if not over row count 
   void readNext()
   {
-    if(currentIndex==(dataTable.getRowCount()-1))// if index is above rowcount do nothing  
-    {      
+    if(currentIndex==(dataTable.getRowCount()-1))// if index is above rowcount reset all variables  
+    { 
+     filePath = " ";
+     dataTable = new Table ();
+     currentIndex = 0;
+     radius = 0;
+     tank =0;
     }
     else
     {
       currentIndex++;
-    }
+    }    
   }
   
   //reads the RPM of the current row 
