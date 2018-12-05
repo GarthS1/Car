@@ -20,7 +20,7 @@ class Car
   }
   
   //gives the data to each of the classes inside of car and calls the fucntions to caulate the vaules needed 
-  void processInput(float RPM, float gearRatio, float fuelLevel, float X, float Y)
+  void processInput(float RPM, float gearRatio, float fuelLevel)
   {
     //vaules are assigned inside the classes  
     computer.RPM = RPM;

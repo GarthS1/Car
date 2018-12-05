@@ -1,3 +1,4 @@
+//add commnets 
 void graph (float []d) 
 {
   float [] shortened = new float [40] ;
@@ -46,4 +47,57 @@ void graph2 (float []d)
   barChart.setBarColour(color(250, 100, 20, 200));
   barChart.setBarGap(4);
   barChart.draw(50, 1000, 500, 180);
+}
+
+class Compass
+{
+  float pastX;
+  float pastY;
+  String direction;
+  
+  Compass()
+  {
+    pastX = 0;
+    pastY = 0;
+    direction = " ";
+  }
+  
+  Compass(float a, float b, String c)
+  {
+    pastX = a;
+    pastY = b;
+    direction = c;
+  }
+  
+  void direction ( float x, float y)
+  {
+    float changeX = pastX - x;
+    float changeY = pastY - y;
+    pastX = x;
+    pastY = y;
+    direction = " ";
+    if(0>changeX)
+    {
+      direction +=  'N';
+    }
+    else
+    {
+      direction +=  'S';
+    }
+    if(0>changeY)
+    {
+      direction +=  'E';
+    }
+    else
+    {
+      direction +=  'W';
+    }
+  }
+  
+  void display()
+  {
+    textSize(150); 
+    fill(255, 211, 56);
+    text(direction, 300, 300);
+  }
 }

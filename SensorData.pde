@@ -7,7 +7,8 @@ class SensorDataProvider
   Table dataTable;
   int currentIndex; //counter
   float radius; //always need radius and is tied to table 
-  float tank; //always need tank capicity and is tied to table 
+  float tank; //always need tank capicity and is tied to table
+  boolean start; //varaible to read start screen  
   
   SensorDataProvider ()
   {
@@ -16,15 +17,17 @@ class SensorDataProvider
     currentIndex = 0;
     radius = 0;
     tank =0;
+    start =true;
   }
   
-  SensorDataProvider(String s, Table a, int i, float r, float t)
+  SensorDataProvider(String s, Table a, int i, float r, float t, boolean rt)
   {
     filePath = s;
     dataTable = a; 
     currentIndex = i;
     radius = r;
     tank = t;
+    start = rt;
   }
   
   // based on user input loads the correct Table dataTablend returns it
@@ -54,6 +57,7 @@ class SensorDataProvider
      currentIndex = 0;
      radius = 0;
      tank =0;
+     start = true;
     }
     else
     {
