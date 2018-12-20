@@ -2,6 +2,7 @@
 //also defines the min, max and the label 
 SensorDataProvider data = new SensorDataProvider();
 Car car = new Car();
+Compass direction = new Compass();
 Gauge fuelLevel= new Gauge(0, 100, 0, "fuelLevel");
 Gauge speed = new Gauge(0, 200, 0, "speed");
 Gauge RPM = new Gauge(0, 2500, 0, "RPM");
@@ -9,9 +10,10 @@ Gauge range = new Gauge(0, 10000, 0, "Range");
 Gauge fuelConsumpation = new Gauge(0, 10000, 0, "fuelConsumpation");
 Gauge fuelEconomy = new Gauge(0, 30, 0, "fuelEconomy");
 Gauge odometer = new Gauge(0, 1000000000, 0, "odometer");
-Compass direction = new Compass();
-PImage menuPage;
-int i = 0;
+
+//makes the start screen and the dashboard global images able to called through functions 
+PImage menuPage;  
+PImage dashboard;
 
 //imports bar graph tool
 import org.gicentre.utils.stat.*;
@@ -20,44 +22,21 @@ void setup()
 {
   frameRate(60);
   fullScreen();
-  menuPage = loadImage("Menu-Page.jpg"); 
+  //loads images in setup to make the program faster
+  menuPage = loadImage("Menu-Page.jpg");
+  dashboard = loadImage("dashboard-Recovered.jpg");
 }
 
-void draw()
+void draw() //<>//
 {
-  //if no filePath is loaded display the selection screeen
-  if(data.start==true)
+  // if no filepath has been loaded display the start up screen
+  if(data.filePath == " ")
   {
-    if(i==0)
+    image(menuPage, 0, -500);
+    //sees if a key is pressed 
+    if(keyPressed == true) //<>//
     {
-      image(menuPage, 0, -500);
-      i++;
-    }
-    else 
-    {
-    if (key == '1') // if 1 is pressed loads BMW vaules 
-    { 
-      data.filePath = "car_status_BMW_323i.csv";
-      data.Initalize();
-      car.computer.radius= data.radius;
-      car.tank.tankCapacity= data.tank;
-      data.start = false;
-      i =0;
-    } 
-    else if (key == '2' )//if 2 is pressed load truck vaules
-    {
-      data.filePath =  "car_status_Truck_F150.csv";
-      data.Initalize();  
-      car.computer.radius= data.radius;
-      car.tank.tankCapacity= data.tank;
-      data.start = false;
-      i = 0;
-    }
-    else if (key == '3' )// if 3 is pressed end program  
-    {
-      exit();
-    }
-    key = 0;
+     keyPressed();
     }
   }
   //once a filePath is selected run the assigned functions to display the revelant information
@@ -79,8 +58,8 @@ void draw()
     display(nfc(fuelLevel.currentVaule,1), nfc(RPM.currentVaule,1), nfc(speed.currentVaule,1), nfc(fuelEconomy.currentVaule, 2),nfc(odometer.currentVaule,2),nfc(range.currentVaule,2),nfc(fuelConsumpation.currentVaule,2)); 
     
     //calls fucntion to display graphs 
-    //graph(car.fuel.fuelConsumptionA);
-    //graph2(car.fuel.fuelEconomyHistoryA);
+    graph(car.fuel.fuelConsumptionA);
+    graph2(car.fuel.fuelEconomyHistoryA);
     
     //calls fucntion to draw compass
     direction.direction(data.readX(), data.readY());
@@ -88,5 +67,27 @@ void draw()
     
     //calls the read next function which calls the next row of the table or if table has no more rows resets the program 
     data.readNext();
+  }
+}
+
+void keyPressed()
+{
+  if (key == '1') // if 1 is pressed loads BMW vaules 
+  { 
+    data.filePath = "car_status_BMW_323i.csv";
+    data.Initalize();
+    car.computer.radius= data.radius;
+    car.tank.tankCapacity= data.tank;
+  } 
+  else if (key == '2' )//if 2 is pressed load truck vaules
+  {
+    data.filePath =  "car_status_Truck_F150.csv";
+    data.Initalize();  
+    car.computer.radius= data.radius;
+    car.tank.tankCapacity= data.tank;
+  }
+  else if (key == '3' )// if 3 is pressed end program  
+  {
+    exit();
   }
 }

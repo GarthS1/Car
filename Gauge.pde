@@ -32,11 +32,9 @@ void display(String fuelLevel, String RPM, String speed, String fuelEconomy, Str
 {
   //asssigns a font
   PFont font1; 
-  font1 = loadFont("DialogInput.bolditalic-48.vlw");
+  font1 = loadFont("3ds-BoldItalic-48.vlw");
   
   //loasds image from folder
-  PImage dashboard;
-  dashboard = loadImage("dashboard-Recovered.jpg");
   image(dashboard, 0, -100);  
   textFont(font1, 100);
   
@@ -48,9 +46,9 @@ void display(String fuelLevel, String RPM, String speed, String fuelEconomy, Str
   fill(255, 211, 56);
   text(RPM, 900, 100); 
   
-  textSize(150); 
+  textSize(110); 
   fill(255, 211, 56);
-  text(speed, 800, 550); 
+  text(speed, 890, 550); 
   
   textSize(25);
   fill(255, 211, 56);
